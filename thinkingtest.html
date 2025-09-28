@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>QR 자가테스트</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    h2 { text-align: center; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f9f9ff;   /* 은은한 배경색 */
+      font-weight: bold;
+      padding: 12px;
+      font-size: 14px;             /* 글씨 살짝 작게 */
+      white-space: nowrap;         /* 줄바꿈 방지 */
+  
+    }
+
+    input[type="radio"] {
+      transform: scale(1.2);
+      margin: 4px;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #2809f7;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #1806b9;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 시작 화면 -->
+<div id="start" style="text-align:center;">
+  <!-- 제목 -->
+  <h2>QR코드 안전 자가테스트</h2>
+
+  <!-- 로고 -->
+  <div style="margin:20px 0;">
+    <img src="qari1.png" alt="QR코드 로고" width="200">
+  </div>
+
+  <!-- Start 버튼 -->
+  <div class="start-container" style="margin-top:20px;">
+    <button onclick="startTest()">Start</button>
+  </div>
+</div>
+</style>
+
+  <!-- 테스트 화면 -->
+  <form id="test" style="display:none;" onsubmit="submitTest(event)">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60%">문항</th>
+          <th>전혀 아니다(0)</th>
+          <th>아니다(1)</th>
+          <th>보통(2)</th>
+          <th>그렇다(3)</th>
+          <th>매우 그렇다(4)</th>
+        </tr>
+      </thead>
+      <tbody id="questions"></tbody>
+    </table>
+    <button type="submit">결과 보기</button>
+  </form>
+
+  <!-- 결과 화면 -->
+  <div id="result" style="display:none;" class="result"></div>
+
+  <script>
+    const questions = [
+      "방금 전 QR코드를 스캔하기 전에 QR코드가 안전한지 의심했나요?",
+      "출처(제공자·기관·장소)를 확인하나요?",
+      "URL이 정상적인 도메인인지 확인하나요?",
+      "QR코드가 위조·훼손된 것처럼 보이면 의심하나요?",
+      "보안 연결(https://)을 확인하나요?"
+    ];
+
+    function startTest() {
+      document.getElementById("start").style.display = "none";
+      const qBody = document.getElementById("questions");
+      qBody.innerHTML = "";
+      questions.forEach((q, i) => {
+        let row = `<tr><td style="text-align:left">${i+1}. ${q}</td>`;
+        for (let j=0; j<=4; j++) {
+          row += `<td><input type="radio" name="q${i}" value="${j}" required></td>`;
+        }
+        row += "</tr>";
+        qBody.innerHTML += row;
+      });
+      document.getElementById("test").style.display = "block";
+    }
+
+    function submitTest(e) {
+      e.preventDefault();
+      let total = 0;
+      questions.forEach((_, i) => {
+        total += parseInt(document.querySelector(`input[name=q${i}]:checked`).value);
+      });
+
+      let msg = "";
+      if (total <= 8) msg = "QR코드 사용 습관이 매우 위험합니다. 출처·주소 확인 습관을 꼭 들이세요.";
+      else if (total <= 12) msg = "기본적인 인식은 있으나 여전히 위험할 수 있습니다. 보안 확인 습관을 더 강화하세요.";
+      else if (total <= 17) msg = "대체로 안전하게 QR코드를 사용하고 있습니다. 조금만 더 꼼꼼히 확인하면 좋아요.";
+      else msg = "보안 인식 수준이 매우 높습니다. 지금 습관을 꾸준히 유지하세요.";
+
+      document.getElementById("test").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerHTML = `
+        <h3>총점: ${total}점</h3>
+        <p>${msg}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
