@@ -4,82 +4,87 @@
   <meta charset="UTF-8">
   <title>QR 자가테스트</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    h2 { text-align: center; }
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    /* 시작 화면을 화면 정중앙에 배치 */
+    #start {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* 설문 테이블 */
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      font-size: 18px;
     }
 
     th, td {
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 14px;
       text-align: center;
     }
 
     th {
-      background-color: #f9f9ff;   /* 은은한 배경색 */
+      background-color: #f9f9ff;
       font-weight: bold;
-      padding: 12px;
-      font-size: 14px;             /* 글씨 살짝 작게 */
-      white-space: nowrap;         /* 줄바꿈 방지 */
-  
+      font-size: 16px;
+      white-space: nowrap;
     }
 
     input[type="radio"] {
-      transform: scale(1.2);
-      margin: 4px;
+      transform: scale(1.4); /* 버튼 크기 확대 */
+      margin: 6px;
     }
 
-    /* 결과창 꾸미기 */
+    /* 결과창을 화면 중앙에 */
     .result {
-      margin: 40px auto;          /* 위아래 여백 */
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin: 0 auto;
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
       background-color: #f9f9ff;
-      text-align: center;
       max-width: 600px;
 
-      font-size: 20px;            /* 글씨 크게 */
+      font-size: 22px;
       line-height: 1.6;
+      text-align: center;
     }
 
-    /* 결과 제목 */
     .result h3 {
-      font-size: 26px;
+      font-size: 28px;
       margin-bottom: 15px;
       color: #2809f7;
     }
 
-    /* 모바일에서도 보기 편하게 */
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* 표와 버튼도 넓게 */
-    table {
-      font-size: 18px;
-    }
-
-    button {
-      font-size: 18px;
-      padding: 14px 28px;
-    }
-
+    /* 버튼 */
     button {
       background-color: #2809f7;
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 14px 28px;
+      font-size: 18px;
       border-radius: 8px;
       cursor: pointer;
       margin-top: 20px;
@@ -88,26 +93,24 @@
     button:hover {
       background-color: #1806b9;
     }
+
+    /* 모바일 최적화 */
+    @media (max-width: 600px) {
+      h2 { font-size: 22px; }
+      table { font-size: 16px; }
+      .result { font-size: 18px; padding: 20px; }
+      .result h3 { font-size: 24px; }
+    }
   </style>
 </head>
 
 <body>
   <!-- 시작 화면 -->
-<div id="start" style="text-align:center;">
-  <!-- 제목 -->
-  <h2>QR코드 안전 자가테스트</h2>
-
-  <!-- 로고 -->
-  <div style="margin:20px 0;">
-    <img src="qari1.png" alt="QR코드 로고" width="200">
-  </div>
-
-  <!-- Start 버튼 -->
-  <div class="start-container" style="margin-top:20px;">
+  <div id="start">
+    <h2>QR코드 안전 자가테스트</h2>
+    <img src="qari1.png" alt="QR코드 로고" width="200" style="margin:20px 0;">
     <button onclick="startTest()">Start</button>
   </div>
-</div>
-</style>
 
   <!-- 테스트 화면 -->
   <form id="test" style="display:none;" onsubmit="submitTest(event)">
@@ -124,7 +127,9 @@
       </thead>
       <tbody id="questions"></tbody>
     </table>
-    <button type="submit">결과 보기</button>
+    <div style="text-align:center;">
+      <button type="submit">결과 보기</button>
+    </div>
   </form>
 
   <!-- 결과 화면 -->
@@ -168,7 +173,7 @@
       else msg = "보안 인식 수준이 매우 높습니다. 지금 습관을 꾸준히 유지하세요.";
 
       document.getElementById("test").style.display = "none";
-      document.getElementById("result").style.display = "block";
+      document.getElementById("result").style.display = "flex";
       document.getElementById("result").innerHTML = `
         <h3>총점: ${total}점</h3>
         <p>${msg}</p>
@@ -177,4 +182,5 @@
   </script>
 </body>
 </html>
+
 
