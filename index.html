@@ -25,12 +25,31 @@
       align-items: center;
       text-align: center;
     }
+    /* 제목 크게 */
+    #start h2 {
+      font-size: 28px;  /* 기존보다 크게 */
+      margin-bottom: 20px;
+    }
+
+    /* 로고 이미지 크게 */
+    #start img {
+      width: 240px;     /* 기존 200px → 확대 */
+      margin: 20px 0;
+    }
+
+    /* Start 버튼 크게 */
+    #start button {
+      font-size: 20px;      /* 글자 크기 업 */
+      padding: 16px 32px;   /* 버튼 크기 업 */
+      border-radius: 10px;
+    }
 
     /* 설문 테이블 */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      justify-content: center;
+      align-items: center;
       font-size: 18px;
     }
 
@@ -54,28 +73,45 @@
 
     /* 결과창을 화면 중앙에 */
     .result {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      margin: 0 auto;
+      margin: 40px auto;
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
-      background-color: #f9f9ff;
       max-width: 600px;
+      background-color: #f9f9ff;
+      text-align: center;
 
       font-size: 22px;
       line-height: 1.6;
-      text-align: center;
     }
 
     .result h3 {
       font-size: 28px;
       margin-bottom: 15px;
       color: #2809f7;
+    }
+    .result.danger {
+      background-color: #ffe5e5;
+      border-color: #ff4d4d;
+      color: #b30000;
+    }
+
+    .result.warning {
+      background-color: #fff5e5;
+      border-color: #ff9900;
+      color: #cc6600;
+    }
+
+    .result.good {
+      background-color: #e5f9e5;
+      border-color: #33cc33;
+      color: #267326;
+    }
+
+    .result.excellent {
+      background-color: #e5f0ff;
+      border-color: #3366ff;
+      color: #003399;
     }
 
     /* 버튼 */
@@ -166,14 +202,27 @@
         total += parseInt(document.querySelector(`input[name=q${i}]:checked`).value);
       });
 
+      const resultDiv = document.getElementById("result");
       let msg = "";
-      if (total <= 8) msg = "QR코드 사용 습관이 매우 위험합니다. 출처·주소 확인 습관을 꼭 들이세요.";
-      else if (total <= 12) msg = "기본적인 인식은 있으나 여전히 위험할 수 있습니다. 보안 확인 습관을 더 강화하세요.";
-      else if (total <= 17) msg = "대체로 안전하게 QR코드를 사용하고 있습니다. 조금만 더 꼼꼼히 확인하면 좋아요.";
-      else msg = "보안 인식 수준이 매우 높습니다. 지금 습관을 꾸준히 유지하세요.";
+      if (total <= 5) {
+      msg = "QR코드 사용 습관이 매우 위험합니다. 출처·주소 확인 습관을 꼭 들이세요.";
+      resultDiv.className = "result danger";
+      } 
+      else if (total <= 10) {
+      msg = "기본적인 인식은 있으나 여전히 위험할 수 있습니다. 보안 확인 습관을 더 강화하세요.";
+      resultDiv.className = "result warning";
+      } 
+      else if (total <= 15) {
+      msg = "대체로 안전하게 QR코드를 사용하고 있습니다. 조금만 더 꼼꼼히 확인하면 좋아요.";
+      resultDiv.className = "result good";
+      } 
+      else {
+      msg = "보안 인식 수준이 매우 높습니다. 지금 습관을 꾸준히 유지하세요.";
+      resultDiv.className = "result excellent";
+}
 
       document.getElementById("test").style.display = "none";
-      document.getElementById("result").style.display = "flex";
+      document.getElementById("result").style.display = "block";
       document.getElementById("result").innerHTML = `
         <h3>총점: ${total}점</h3>
         <p>${msg}</p>
@@ -182,5 +231,6 @@
   </script>
 </body>
 </html>
+
 
 
