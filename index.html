@@ -12,13 +12,13 @@
 
     h2 {
       text-align: center;
-      font-size: 26px;
+      font-size: 32px;   /* 제목 더 크게 */
       margin-bottom: 20px;
     }
 
-    /* 시작 화면 중앙 */
+    /* 시작 화면 중앙 배치 */
     #start {
-      min-height: 100dvh;   /* 모바일 주소창 제외 동적 뷰포트 */
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,22 +26,25 @@
       text-align: center;
     }
 
+    /* 제목 크게 */
     #start h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
+      font-size: 34px;   /* 더 크게 */
+      margin-bottom: 25px;
     }
 
+    /* 로고 이미지 크게 */
     #start img {
-      width: 80%;        /* 화면 가로 80% */
-      max-width: 600px;  /* 최대 크기 제한 */
+      width: 85%;        /* 화면 가로의 85% */
+      max-width: 700px;  /* PC에서는 최대 700px */
       height: auto;
-      margin: 20px 0;
+      margin: 25px 0;
     }
 
+    /* Start 버튼 크게 */
     #start button {
-      font-size: 20px;
-      padding: 16px 32px;
-      border-radius: 10px;
+      font-size: 22px;       /* 글씨 크기 업 */
+      padding: 20px 40px;    /* 버튼 크기 업 */
+      border-radius: 12px;
     }
 
     /* 설문 화면 중앙 */
@@ -54,9 +57,10 @@
       text-align: center;
     }
 
+    /* 설문 테이블 */
     table {
-      width: 90%;
-      max-width: 700px;
+      width: 100%;           /* 모바일에서는 꽉 차게 */
+      max-width: 800px;      /* 큰 화면은 800px 제한 */
       border-collapse: collapse;
       font-size: 18px;
       margin-top: 20px;
@@ -80,15 +84,9 @@
       margin: 6px;
     }
 
-    /* 결과 화면 중앙 */
+    /* 결과창 */
     .result {
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      margin: 0 auto;
+      margin: 40px auto;
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
@@ -98,6 +96,11 @@
 
       font-size: 22px;
       line-height: 1.6;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .result h3 {
@@ -148,7 +151,7 @@
 
     /* 모바일 최적화 */
     @media (max-width: 600px) {
-      h2 { font-size: 22px; }
+      h2 { font-size: 26px; }
       table { font-size: 16px; }
       .result { font-size: 18px; padding: 20px; }
       .result h3 { font-size: 24px; }
@@ -208,7 +211,7 @@
         row += "</tr>";
         qBody.innerHTML += row;
       });
-      document.getElementById("test").style.display = "flex";
+      document.getElementById("test").style.display = "block";
     }
 
     function submitTest(e) {
@@ -244,7 +247,5 @@
   </script>
 </body>
 </html>
-
-
 
 
