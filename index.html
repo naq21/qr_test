@@ -84,9 +84,16 @@
       margin: 6px;
     }
 
-    /* 결과창 */
+    /* 결과 화면을 감싸는 부모 */
+    #result-wrapper {
+      min-height: 100dvh;   /* 화면 전체 높이 */
+      display: flex;
+      justify-content: center; /* 가로 중앙 */
+      align-items: center;     /* 세로 중앙 */
+    }
+
+    /* 결과 박스 */
     .result {
-      margin: 40px auto;
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
@@ -96,12 +103,8 @@
 
       font-size: 22px;
       line-height: 1.6;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
+
 
     .result h3 {
       font-size: 28px;
@@ -247,7 +250,6 @@
   </script>
 </body>
 </html>
-
 
 
 
