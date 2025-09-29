@@ -16,9 +16,9 @@
       margin-bottom: 20px;
     }
 
-    /* 시작 화면을 화면 정중앙에 배치 */
+    /* 시작 화면 중앙 */
     #start {
-      height: 100vh;
+      min-height: 100dvh;   /* 모바일 주소창 제외 동적 뷰포트 */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,30 +26,37 @@
       text-align: center;
     }
 
-    /* 제목 크게 */
     #start h2 {
       font-size: 28px;
       margin-bottom: 20px;
     }
 
-    /* 로고 이미지 크게 (모바일 대응) */
     #start img {
-      width: 400px;       /* 기본 크기 */
-      max-width: 80%;     /* 작은 화면에서는 자동 축소 */
-      height: auto;       /* 비율 유지 */
+      width: 80%;        /* 화면 가로 80% */
+      max-width: 600px;  /* 최대 크기 제한 */
+      height: auto;
       margin: 20px 0;
     }
 
-    /* Start 버튼 크게 */
     #start button {
       font-size: 20px;
       padding: 16px 32px;
       border-radius: 10px;
     }
 
-    /* 설문 테이블 */
+    /* 설문 화면 중앙 */
+    #test {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
     table {
-      width: 100%;
+      width: 90%;
+      max-width: 700px;
       border-collapse: collapse;
       font-size: 18px;
       margin-top: 20px;
@@ -73,9 +80,15 @@
       margin: 6px;
     }
 
-    /* 결과창 */
+    /* 결과 화면 중앙 */
     .result {
-      margin: 40px auto;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin: 0 auto;
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
@@ -195,7 +208,7 @@
         row += "</tr>";
         qBody.innerHTML += row;
       });
-      document.getElementById("test").style.display = "block";
+      document.getElementById("test").style.display = "flex";
     }
 
     function submitTest(e) {
@@ -222,7 +235,7 @@
       }
 
       document.getElementById("test").style.display = "none";
-      resultDiv.style.display = "block";
+      resultDiv.style.display = "flex";
       resultDiv.innerHTML = `
         <h3>총점: ${total}점</h3>
         <p>${msg}</p>
