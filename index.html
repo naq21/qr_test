@@ -12,7 +12,7 @@
 
     h2 {
       text-align: center;
-      font-size: 32px;   /* 제목 더 크게 */
+      font-size: 32px;
       margin-bottom: 20px;
     }
 
@@ -26,24 +26,16 @@
       text-align: center;
     }
 
-    /* 제목 크게 */
-    #start h2 {
-      font-size: 34px;   /* 더 크게 */
-      margin-bottom: 25px;
-    }
-
-    /* 로고 이미지 크게 */
     #start img {
-      width: 85%;        /* 화면 가로의 85% */
-      max-width: 700px;  /* PC에서는 최대 700px */
+      width: 85%;
+      max-width: 700px;
       height: auto;
       margin: 25px 0;
     }
 
-    /* Start 버튼 크게 */
     #start button {
-      font-size: 40px;       /* 글씨 크기 업 */
-      padding: 30px 60px;    /* 버튼 크기 업 */
+      font-size: 40px;
+      padding: 30px 60px;
       border-radius: 12px;
     }
 
@@ -57,13 +49,12 @@
       text-align: center;
     }
 
-    /* 설문 테이블 */
     table {
-      width: 100%;           /* 모바일에서는 꽉 차게 */
-      max-width: 800px;      /* 큰 화면은 800px 제한 */
+      width: 100%;
+      max-width: 800px;
       border-collapse: collapse;
       font-size: 18px;
-      margin-top: 20px auto;
+      margin: 20px auto;   /* 중앙 정렬 */
     }
 
     th, td {
@@ -84,27 +75,24 @@
       margin: 6px;
     }
 
-    /* 결과 화면을 감싸는 부모 */
+    /* 결과 화면 감싸는 부모 */
     #result-wrapper {
-      min-height: 100dvh;   /* 화면 전체 높이 */
-      display: flex;
-      justify-content: center; /* 가로 중앙 */
-      align-items: center;     /* 세로 중앙 */
+      min-height: 100dvh;
+      display: none;              /* 처음엔 숨김 */
+      justify-content: center;
+      align-items: center;
     }
 
-    /* 결과 박스 */
     .result {
       padding: 25px;
       border: 2px solid #2809f7;
       border-radius: 12px;
-      max-width: 400px;
+      max-width: 80%;
       background-color: #f9f9ff;
       text-align: center;
-
       font-size: 22px;
       line-height: 1.6;
     }
-
 
     .result h3 {
       font-size: 28px;
@@ -112,31 +100,11 @@
       color: #2809f7;
     }
 
-    .result.danger {
-      background-color: #ffe5e5;
-      border-color: #ff4d4d;
-      color: #b30000;
-    }
+    .result.danger { background-color: #ffe5e5; border-color: #ff4d4d; color: #b30000; }
+    .result.warning { background-color: #fff5e5; border-color: #ff9900; color: #cc6600; }
+    .result.good { background-color: #e5f9e5; border-color: #33cc33; color: #267326; }
+    .result.excellent { background-color: #e5f0ff; border-color: #3366ff; color: #003399; }
 
-    .result.warning {
-      background-color: #fff5e5;
-      border-color: #ff9900;
-      color: #cc6600;
-    }
-
-    .result.good {
-      background-color: #e5f9e5;
-      border-color: #33cc33;
-      color: #267326;
-    }
-
-    .result.excellent {
-      background-color: #e5f0ff;
-      border-color: #3366ff;
-      color: #003399;
-    }
-
-    /* 버튼 스타일 */
     button {
       background-color: #2809f7;
       color: white;
@@ -148,11 +116,8 @@
       margin-top: 20px;
     }
 
-    button:hover {
-      background-color: #1806b9;
-    }
+    button:hover { background-color: #1806b9; }
 
-    /* 모바일 최적화 */
     @media (max-width: 600px) {
       h2 { font-size: 26px; }
       table { font-size: 16px; }
@@ -161,7 +126,6 @@
     }
   </style>
 </head>
-
 <body>
   <!-- 시작 화면 -->
   <div id="start">
@@ -170,7 +134,7 @@
     <button onclick="startTest()">Start</button>
   </div>
 
-  <!-- 테스트 화면 -->
+  <!-- 설문 화면 -->
   <form id="test" style="display:none;" onsubmit="submitTest(event)">
     <table>
       <thead>
@@ -185,13 +149,15 @@
       </thead>
       <tbody id="questions"></tbody>
     </table>
-    <div style="text-align:center;">
+    <div>
       <button type="submit">결과 보기</button>
     </div>
   </form>
 
   <!-- 결과 화면 -->
-  <div id="result" style="display:none;" class="result"></div>
+  <div id="result-wrapper">
+    <div id="result" class="result"></div>
+  </div>
 
   <script>
     const questions = [
@@ -241,7 +207,7 @@
       }
 
       document.getElementById("test").style.display = "none";
-      resultDiv.style.display = "flex";
+      document.getElementById("result-wrapper").style.display = "flex";
       resultDiv.innerHTML = `
         <h3>총점: ${total}점</h3>
         <p>${msg}</p>
@@ -250,6 +216,7 @@
   </script>
 </body>
 </html>
+
 
 
 
