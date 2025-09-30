@@ -12,7 +12,7 @@
 
     h2 {
       text-align: center;
-      font-size: 32px;
+      font-size: 60px;
       margin-bottom: 20px;
     }
 
@@ -46,16 +46,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      box-sizing: border-box;
     }
 
     table {
-      width: 100%;
-      max-width: 90%;
-      border-collapse: collapse;
-      font-size: 18px;
-      margin: 20px auto;   /* 중앙 정렬 */
+      max-height: 80vh;   /* 화면 80%까지만 */
+      overflow-y: auto;   /* 넘치면 스크롤 */
     }
+
 
     th, td {
       border: 1px solid #ccc;
@@ -216,7 +214,6 @@
   </script>
 </body>
 </html>
-
 
 
 
