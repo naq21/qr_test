@@ -12,11 +12,7 @@
       background: #f5f6fa;
     }
 
-    h2 {
-      text-align: center;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+
 
     /* 시작 화면 */
     #start {
@@ -28,15 +24,19 @@
       text-align: center;
     }
 
+    #start h2 {
+      font-size: 8vw; /* 화면 너비의 8% */
+    }
+
     #start img {
-      width: 80%;
       max-width: 500px;
+      width: 80%;
       margin: 25px 0;
     }
 
     #start button {
-      font-size: 28px;
-      padding: 20px 50px;
+      font-size: 6vw;
+      padding: 4vw 8vw;
       border-radius: 12px;
       background-color: #2809f7;
       color: #fff;
@@ -69,7 +69,7 @@
       width: 100%;
       max-width: 750px;
       margin-bottom: 25px;
-      padding: 10px 0px 13px 5px;  /* 위/오른/아래/왼쪽 */
+      padding: 10px 0px 13px 8px;  /* 위/오른/아래/왼쪽 */
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 12px;
@@ -139,7 +139,7 @@
       border: 2px solid #2809f7;
       border-radius: 12px;
       max-width: 700px;
-      width: 90%;
+      width: 90%; /*모바일에서 꽉 차게 보이게*/
       background-color: #f9f9ff;
       text-align: center;
       font-size: 22px;
