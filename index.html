@@ -88,7 +88,7 @@
     .options {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 16px;        /* 옵션 사이 간격 (위아래 12px, 좌우 24px) */
+      gap: 8px 10px;        /* 옵션 사이 간격 (위아래 12px, 좌우 24px) */
       justify-content: flex-start;  /* 왼쪽부터 차곡차곡 */
     }
 
@@ -126,12 +126,14 @@
     /* 결과 화면 */
     #result-wrapper {
       min-height: 100dvh;
-      display: none;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      text-align: center;
+      
     }
-
+   
     .result {
       padding: 25px;
       border: 2px solid #2809f7;
